@@ -1,0 +1,11 @@
+class Solution:
+    def detectCycle(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        # do forward pass remembering visited nodes. For each node check if we have already visited this node, if yes, then cycle starts there.
+        seen = set()
+        node = head
+        while node is not None:        
+            seen.add(id(node))
+            node = node.next
+            if id(node) in seen:
+                return node
+        return None
