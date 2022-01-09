@@ -1,0 +1,11 @@
+class Solution:
+    def fib(self, n: int) -> int:
+        ans = 0
+        fib = 0
+        # Base Case
+        if n == 0:
+            return 0
+        if n == 1:
+            return 1
+        ans = self.fib(n-2)+self.fib(n-1)
+        return ans
