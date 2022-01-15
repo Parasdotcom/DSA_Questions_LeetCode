@@ -1,0 +1,3 @@
+class Solution:
+    def postorder(self, root: 'Node') -> List[int]:
+         return functools.reduce(lambda x, y: x + y, [self.postorder(child) for child in root.children] + [[root.val]]) if root else []
