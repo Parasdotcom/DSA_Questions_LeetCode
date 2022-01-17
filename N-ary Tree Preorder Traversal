@@ -1,0 +1,15 @@
+class Solution:
+    def helper(self, node):
+        #print(node.val)
+        self.ans.append(node.val)
+        if node.children == None:
+            return
+        for child in node.children:
+            self.helper(child)
+        
+    def preorder(self, root: 'Node') -> List[int]:
+        if not root:
+            return []
+        self.ans = []
+        self.helper(root)
+        return self.ans
