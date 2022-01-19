@@ -1,0 +1,14 @@
+class Solution:
+    def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
+        mono_que = deque()
+        res = []
+        
+        for i, v in enumerate(nums):
+            while mono_que and mono_que[-1][1] < v:
+                mono_que.pop()
+            mono_que.append((i, v))
+            while i - mono_que[0][0] >= k:
+                mono_que.popleft()
+            res.append(mono_que[0][1])
+            
+        return res[k-1:]
