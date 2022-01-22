@@ -1,0 +1,9 @@
+class Solution:
+    def subsetsWithDup(self, nums: List[int]) -> List[List[int]]:
+        l=[]
+        nums.sort()
+        for i in range(0,len(nums)+1):
+            for j in itertools.combinations(nums,i):
+                if j not in l:
+                    l.append(j)
+        return l
