@@ -1,0 +1,11 @@
+class Solution:
+    def letterCasePermutation(self, s: str) -> List[str]:
+        result = [s] # initialize result with current string
+        for idx, character in enumerate(s): 
+            if character.isalpha(): # we continue if only character is string not digit
+                n = len(result)   
+                for j in range(n):  # loop through current result to change cases for previously addedstrings 
+                    new = list(result[j]) # we will take each previously added string , convert it to list (becasue strings are immutible) and later will change letter case
+                    new[idx] = new[idx].swapcase()
+                    result.append(''.join(new))
+        return result
