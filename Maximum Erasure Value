@@ -1,0 +1,10 @@
+class Solution:
+    def maximumUniqueSubarray(self, nums: List[int]) -> int:
+        mymax,l,r,h=0,-1,0,{}
+        summ=list(accumulate(nums))+[0]
+        for r in range(len(nums)):
+            if nums[r] in h:
+                l=max(h[nums[r]],l)
+            h[nums[r]]=r
+            mymax=max(summ[r]-summ[l],mymax)
+        return mymax
