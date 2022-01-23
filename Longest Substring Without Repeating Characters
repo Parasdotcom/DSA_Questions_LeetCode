@@ -1,0 +1,21 @@
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        i = 0
+        c = 0
+        ans = 0
+        ls = []
+        while i < len(s):
+            if s[i] not in ls:
+                ls.append(s[i]) 
+                c += 1
+                ans = max(c, ans) 
+            else: # if present 
+                ls.append(s[i]) # add new element 
+                index = ls.index(s[i]) # get index of first occurance of element 
+                ls = ls[index+1:] # remove list elements till first occurance 
+                c = len(ls) # update count with remaining ele 
+            i += 1
+        return ans
+    
+    # add new element and remove all upto its first presence from left if it exists before .. 
+    # keep max count updated
