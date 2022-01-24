@@ -1,0 +1,10 @@
+class Solution:
+    def titleToNumber(self, columnTitle: str) -> int:
+        n = len(columnTitle)
+            
+        i = 0
+        total = 0
+        while (i<n):
+            total +=(ord(columnTitle[n-i-1]) - ord('A') + 1)* pow(26,i)
+            i += 1
+        return total    
