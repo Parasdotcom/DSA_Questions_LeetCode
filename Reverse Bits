@@ -1,0 +1,19 @@
+class Solution:
+    def reverseBits(self, n: int) -> int:
+        ans = 0
+        k = 31
+        while(n):
+        # to get our right most bit 
+          rem = n&1
+        
+        # since our right most bit contributes towards left most bit
+		# when rem == 1 then our ans will be updated 
+          ans += rem*pow(2,k)
+        
+        # implemeting upper logic, dec k for next bit from right
+          k -= 1
+        # right shift the bits by 1 position
+          n = n >> 1
+        
+        
+        return ans
