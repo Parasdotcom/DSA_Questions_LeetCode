@@ -1,0 +1,5 @@
+class Solution:
+    def searchInsert(self, nums: List[int], target: int) -> int:
+        return bisect_left(nums, target)
+		# bisect_left returns 1st position where target must be inserted to keep list sorted
+        
