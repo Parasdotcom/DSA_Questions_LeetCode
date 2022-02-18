@@ -1,0 +1,63 @@
+class Solution:
+    def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
+        direc = "R"
+        count = 0
+        
+        row = 0
+        col = 0
+        res = [0] * (len(matrix) * len(matrix[0]))
+        rows = len(matrix)
+        rowsS = 0
+        
+        cols = len(matrix[0])
+        colsS = 0
+        
+        while(count < len(res)):
+            
+            if(direc == "R"):
+                res[count] = matrix[row][col]
+                col += 1
+                
+                if(col >= cols):
+                    direc = "D"
+                    col -= 1
+                    row += 1
+                    
+                    rowsS += 1
+                
+            elif(direc == "D"):
+                res[count] = matrix[row][col]
+                row += 1
+                
+                if(row >= rows):
+                    direc = "L"
+                    row -= 1
+                    col -= 1
+                    
+                    cols -= 1
+                
+            elif(direc == "L"):
+                
+                res[count] = matrix[row][col]
+                col -= 1
+                
+                
+                if(col < colsS):
+                    direc = "U"
+                    col += 1
+                    row -= 1
+                    
+                    rows -= 1
+                
+            elif(direc == "U"):
+                res[count] = matrix[row][col]
+                row -= 1
+                
+                if(row < rowsS):
+                    direc = "R"
+                    row += 1
+                    col += 1
+                    
+                    colsS += 1
+            count += 1
+        return res
