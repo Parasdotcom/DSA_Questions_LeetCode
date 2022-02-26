@@ -1,0 +1,65 @@
+class Solution:
+    def gameOfLife(self, board: List[List[int]]) -> None:
+        """
+        Do not return anything, modify board in-place instead.
+        """
+        for i in range(len(board)):
+            for j in range(len(board[i])):
+                l_cnt = 0
+                
+                # if we can look at up
+                if i > 0:
+                    if abs(board[i - 1][j]) == 1:
+                        l_cnt += 1
+                        
+                    # if we can look at up-left
+                    if j > 0:
+                        if abs(board[i - 1][j - 1]) == 1:
+                            l_cnt += 1
+                    
+                    # if we can look at up-right
+                    if j < len(board[0]) - 1:
+                        if abs(board[i - 1][j + 1]) == 1:
+                            l_cnt += 1
+                
+                # if we can look at left
+                if j > 0:
+                    if abs(board[i][j - 1]) == 1:
+                        l_cnt += 1
+                
+                # if we can look at right
+                if j < len(board[0]) - 1:
+                    if abs(board[i][j + 1]) == 1:
+                        l_cnt += 1
+                
+                #if we can look at down
+                if i < len(board) - 1:
+                    if abs(board[i + 1][j]) == 1:
+                        l_cnt += 1
+                        
+                    # if we can look at down-left
+                    if j > 0:
+                        if abs(board[i + 1][j - 1]) == 1:
+                            l_cnt += 1
+                    
+                    # if we can look at down-right
+                    if j < len(board[0]) - 1:
+                        if abs(board[i + 1][j + 1]) == 1:
+                            l_cnt += 1
+                
+                if board[i][j] == 1:
+                    if l_cnt < 2:
+                        board[i][j] = -1
+                    elif l_cnt > 3:
+                        board[i][j] = -1
+                    #else stay a live
+                else:
+                    if l_cnt == 3:
+                        board[i][j] = 2
+                
+        for i in range(len(board)):
+            for j in range(len(board[i])):
+                if board[i][j] == -1:
+                    board[i][j] = 0
+                elif board[i][j] == 2:
+                    board[i][j] = 1
