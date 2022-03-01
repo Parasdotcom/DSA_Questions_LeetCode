@@ -1,0 +1,15 @@
+class Solution:
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+        n = len(nums)
+        seen = set()
+        ans = set()
+        
+        for i in range(n):
+            for j in range(i+1, n):
+                lastNumber = 0 - nums[i] - nums[j]
+                if lastNumber in seen:
+                    arr = sorted([nums[i], nums[j], lastNumber])
+                    ans.add((arr[0], arr[1], arr[2]))
+                    
+            seen.add(nums[i])
+        return ans
