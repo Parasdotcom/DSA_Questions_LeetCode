@@ -1,0 +1,11 @@
+class Solution:
+    def findDuplicate(self, nums: List[int]) -> int:
+        dic = {}
+        for n in nums:
+            if n in dic.keys():
+                dic[n] += 1
+            else: 
+                dic[n] = 1 
+                
+            if dic[n] > 1:
+                return n 
