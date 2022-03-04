@@ -1,0 +1,28 @@
+class Solution:
+    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+        sorted(candidates)
+        ans = []
+        
+        def traversal(candidates, target, total, temp):
+            nonlocal ans
+            
+            # base case
+            if total == target:
+                ans.append(temp[:])
+                return
+            
+            for i in range(len(candidates)):
+                if total + candidates[i] <= target:
+                    total += candidates[i]
+                    temp.append(candidates[i])
+                    
+                    traversal(candidates[i:], target, total, temp)
+                    total -= candidates[i]
+                    temp.pop()
+                    
+        traversal(candidates, target, 0, [])
+        
+        return ans
+        
+             
+        
