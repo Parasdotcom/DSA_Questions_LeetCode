@@ -1,0 +1,11 @@
+class Solution:
+    def findPairs(self, nums: List[int], k: int) -> int:
+        nums = sorted(nums)
+        numsdict = dict()
+        res = set()
+        
+        for n in nums:
+            if n in numsdict:
+                res.add((n,numsdict[n]))
+            numsdict[k+n] = n
+        return len(res)
