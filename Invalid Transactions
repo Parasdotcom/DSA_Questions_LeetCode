@@ -1,0 +1,31 @@
+class Solution:
+    def invalidTransactions(self, transactions: List[str]) -> List[str]:
+        # the set storing indices of potential invalid transaction
+        invalid = set()
+        
+        # the hashmap name -> [transaction_index, time, city]
+        
+        names = {}
+        for ind, t in enumerate(transactions):
+            name, time, amount, city = t.split(",")
+            isInvalid = False
+            
+            if name in names:
+                stats = names[name]
+                for inds, times, citys in stats:
+                    if abs(int(time) - int(times)) <= 60 and citys != city:
+                        invalid.add(inds)
+                        isInvalid = True
+            if isInvalid or int(amount) > 1000:
+                invalid.add(ind)
+            
+            names[name] = names.get(name, [])
+            names[name].append([ind, time, city])
+            
+        return [transactions[ind] for ind in invalid]
+                
+                
+                
+                
+                
+                
