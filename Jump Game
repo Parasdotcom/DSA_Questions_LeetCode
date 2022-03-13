@@ -1,0 +1,8 @@
+class Solution:
+    def canJump(self, nums: List[int]) -> bool:
+        l=len(nums)-1
+        for x in range(l,-1,-1):
+            step=nums[x]
+            if x+step>=l:
+                l=x
+        return l==0
