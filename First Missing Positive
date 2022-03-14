@@ -1,0 +1,26 @@
+# firstly record the length of nums
+        n=len(nums) # space o(1) and use time o(n)
+        
+        # Then put the number 5 in position nums[4], this could match the index and the value itself, which is a quite easy way to visit every value correctly
+        # because the final thing we want to know is the min positive number, it must ideally start from 1, 2, 3, 4, ....
+        # So let's firstly find the value showing in nums and put them into nums[value-1]
+        # Then now loop from nums[0]
+        
+        for i in range(n):
+            item=nums[i]
+            ### Attention! in order to avoid missing, here must be 'WHILE'!!
+            ### which means after swaping, current new nums[i] should also start swap as well instead of moving to next index directly
+            #print(nums)
+            while (item>0) and (item<=n) and (item!=nums[item-1]):
+                #print(1)
+                nums[i], nums[item-1] = nums[item-1], item
+                item=nums[i]
+                #print(nums)
+                
+        
+        for i in range(n):
+            item=nums[i]
+            if item!=i+1:
+                return i+1
+        
+        return n+1
