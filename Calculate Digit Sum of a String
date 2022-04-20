@@ -1,0 +1,8 @@
+class Solution:
+    def digitSum(self, s: str, k: int) -> str:
+        if len(s) <= k: return s
+        t = ""
+        for i in range(0, len(s), k):
+            t += str(sum([int(x) for x in s[i:i+k]]))
+        return self.digitSum(t, k)
+        
