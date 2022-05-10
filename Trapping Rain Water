@@ -1,0 +1,16 @@
+class Solution:
+    def trap(self, height: List[int]) -> int:
+        l, r = 0, len(height)-1
+        mxleft, mxright = 0, 0
+        ans = 0
+        
+        while l < r:
+            if height[l] < height[r]:
+                mxleft = max(mxleft , height[l])
+                ans += abs(mxleft-height[l])
+                l += 1
+            else:
+                mxright = max(mxright, height[r])
+                ans += abs(mxright-height[r])
+                r -= 1
+        return ans
