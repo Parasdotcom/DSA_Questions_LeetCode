@@ -1,0 +1,38 @@
+class Solution:
+    def solve(self, board: List[List[str]]) -> None:
+        """
+        Do not return anything, modify board in-place instead.
+        """
+        m = len(board)
+        n = len(board[0])
+        
+        def traverse(i, j):
+            if i < 0 or i >= m or j < 0 or j >= n:
+                return
+            
+            if board[i][j] == "X":              # don't need to change
+                return 
+            
+            if board[i][j] == "#":              # mark boarder and its related O to "#"
+                return
+            
+            board[i][j] = "#"                   # mark "O" to "#"
+            
+            traverse(i + 1, j)
+            traverse(i - 1, j)
+            traverse(i, j + 1)
+            traverse(i, j - 1)
+        
+        for i in range(m):
+            for j in range(n):
+                edge = i == 0 or i == m - 1 or j == 0 or j == n - 1
+                if edge and board[i][j] == "O":
+                    traverse(i, j)
+                    
+        # print(board)
+        for i in range(m):
+            for j in range(n):
+                if board[i][j] == "O":
+                    board[i][j] = "X"
+                if board[i][j] == "#":
+                    board[i][j] = "O"
